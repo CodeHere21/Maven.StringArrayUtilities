@@ -24,16 +24,20 @@ public class StringArrayUtils {
      * @param array array of String objects
      * @return last element in specified array
      */ // TODO
-    public static String getLastElement(String[] array) {
-        return null;
+    public static String getLastElement(String[] array)
+    {
+        String lastElement=array[array.length-1];
+        return lastElement;
     }
 
     /**
      * @param array array of String objects
      * @return second to last element in specified array
      */ // TODO
-    public static String getSecondToLastElement(String[] array) {
-        return null;
+    public static String getSecondToLastElement(String[] array)
+    {
+        String result=array[array.length-2];
+        return result;
     }
 
     /**
@@ -42,7 +46,15 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+       boolean test=false;
+       for (String element:array){
+           if (element == value)
+           {
+               test = true;
+               break;
+           }
+       }
+    return test;
     }
 
     /**
