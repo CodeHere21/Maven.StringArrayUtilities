@@ -1,5 +1,12 @@
 package com.zipcodewilmington;
 
+//import com.sun.tools.javac.util.ArrayUtils;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -62,7 +69,11 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        List<String> array1 = Arrays.asList(array);
+        Collections.reverse(array1);
+        String[] reversed = array1.toArray(array);
+        return reversed;
+
     }
 
     /**
@@ -70,7 +81,12 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        for (int i=0; i<array.length/2; i++){
+            if(!array[i].equals(array[array.length-1-i])){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -78,7 +94,28 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
+        String array1=array.toString();
+        System.out.println(array1);
+        boolean[] mark = new boolean[26];
+        int index = 0;
+        for (int i=0; i< array1.length();i++){
+            if ('A'<= array1.charAt(i) && array1.charAt(i) <= 'Z')
+            {
+                index = array1.charAt(i) - 'A';
+            }
+            else if ('a'<=array1.charAt(i) && array1.charAt(i)<='z'){
+                index = array1.charAt(i) - 'a';
+            }
+            else continue;
+            mark[index] = true;
+        }
+    for (int i = 0; i<= 25; i++)
+        if (mark[i] == false)
         return false;
+
+        return true;
+
+
     }
 
     /**
@@ -87,7 +124,27 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+
+        //sorting array
+        int size=array.length;
+        for(int i=0; i<size-1; i++){
+            for(int j=i+1; j< array.length;j++){
+                if (array[i].compareTo(array[j])>0){
+                    String temp=array[i];
+                    array[i]=array[j];
+                    array[j]=temp;
+                }
+            }
+        }
+
+        //String array1=Arrays.toString(array);
+        //String[] numberOccurrences= new String[]{array1};
+
+        int index = Arrays.binarySearch(array, value);
+        if (index<0){
+            System.out.println("Value not found in array");
+        } else {System.out.println("Value found in array");}
+        return index;
     }
 
     /**
