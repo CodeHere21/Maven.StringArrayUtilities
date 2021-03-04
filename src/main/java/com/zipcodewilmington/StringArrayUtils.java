@@ -2,6 +2,8 @@ package com.zipcodewilmington;
 
 //import com.sun.tools.javac.util.ArrayUtils;
 
+//import com.sun.tools.javac.util.ArrayUtils;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -94,28 +96,32 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        String array1=array.toString();
-        System.out.println(array1);
-        boolean[] mark = new boolean[26];
-        int index = 0;
-        for (int i=0; i< array1.length();i++){
-            if ('A'<= array1.charAt(i) && array1.charAt(i) <= 'Z')
-            {
-                index = array1.charAt(i) - 'A';
+        int arrayCount=0;
+        int charCount=0;
+        int found=0;
+        int charValue='a';
+        String temp;
+        while(charValue<='z') {
+            while (arrayCount < array.length) {
+                temp = array[arrayCount].toLowerCase();
+                while (charCount < temp.length()) {
+                    if (temp.charAt(charCount) == charValue) {
+                        found = 1;
+                    }
+                    charCount++;
+                }
+                charCount = 0;
+                arrayCount++;
             }
-            else if ('a'<=array1.charAt(i) && array1.charAt(i)<='z'){
-                index = array1.charAt(i) - 'a';
+
+            if (found == 0) {
+                return false;
             }
-            else continue;
-            mark[index] = true;
+            arrayCount = 0;
+            found = 0;
+            charValue++;
         }
-    for (int i = 0; i<= 25; i++)
-        if (mark[i] == false)
-        return false;
-
-        return true;
-
-
+return true;
     }
 
     /**
@@ -125,26 +131,15 @@ public class StringArrayUtils {
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
 
-        //sorting array
-        int size=array.length;
-        for(int i=0; i<size-1; i++){
-            for(int j=i+1; j< array.length;j++){
-                if (array[i].compareTo(array[j])>0){
-                    String temp=array[i];
-                    array[i]=array[j];
-                    array[j]=temp;
-                }
+        Integer counter=0;
+        for (int i=0;i< array.length;i++){
+            if (array[i]==value){
+                counter++;
             }
+
         }
+        return counter;
 
-        //String array1=Arrays.toString(array);
-        //String[] numberOccurrences= new String[]{array1};
-
-        int index = Arrays.binarySearch(array, value);
-        if (index<0){
-            System.out.println("Value not found in array");
-        } else {System.out.println("Value found in array");}
-        return index;
     }
 
     /**
@@ -153,15 +148,52 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+
+       String[] copy=new String[array.length-1];
+        int count=0;
+        for(int i=0;i< array.length;i++){
+            if(array[i]!=valueToRemove){
+                copy[count++]=array[i];
+            continue;}
+
+        }
+        //array= ArrayUtils.remove(array,valueToRemove);
+
+        return copy;
     }
 
     /**
-     * @param array array of chars
-     * @return array of Strings with consecutive duplicates removes
+     *
+     *
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        //int n= array.length;
+        //String [] strArray=new String[];
+//        int j=0;
+//        for(int i=0;i<array.length;i++){
+//            if(array[j]!=array[i]){
+//                j++;
+//                array[j]=array[i];
+//            }
+//        }
+//        return array;
+//        StringBuilder sb = new StringBuilder();
+////        String letter = array[0];
+////        for(int i=0;i< array.length;i++){
+////            String nextLetter = array[i];
+////            if(letter.equals(nextLetter)){
+////                array[i]="";
+////                array[i-1]="";
+////            } else {
+////                letter=array[i];
+////            }
+////        }
+////        for (String s:array){
+////            sb.append(s);
+////        }
+////        String [] resultArray =sb.toString().split("");
+////        return resultArray;
+    return array;
     }
 
     /**
