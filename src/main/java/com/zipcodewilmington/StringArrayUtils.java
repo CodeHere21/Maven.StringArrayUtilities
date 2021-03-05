@@ -4,10 +4,9 @@ package com.zipcodewilmington;
 
 //import com.sun.tools.javac.util.ArrayUtils;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+//import com.sun.org.apache.xpath.internal.operations.String;
+
+import java.util.*;
 
 /**
  * Created by leon on 1/29/18.
@@ -167,33 +166,17 @@ return true;
      *
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        //int n= array.length;
-        //String [] strArray=new String[];
-//        int j=0;
-//        for(int i=0;i<array.length;i++){
-//            if(array[j]!=array[i]){
-//                j++;
-//                array[j]=array[i];
-//            }
-//        }
-//        return array;
-//        StringBuilder sb = new StringBuilder();
-////        String letter = array[0];
-////        for(int i=0;i< array.length;i++){
-////            String nextLetter = array[i];
-////            if(letter.equals(nextLetter)){
-////                array[i]="";
-////                array[i-1]="";
-////            } else {
-////                letter=array[i];
-////            }
-////        }
-////        for (String s:array){
-////            sb.append(s);
-////        }
-////        String [] resultArray =sb.toString().split("");
-////        return resultArray;
-    return array;
+        ArrayList<String> l= new ArrayList<String>();
+     for (int i = 0; i < array.length-1; i++) {
+         if (array[i] != array[i + 1]) {
+             l.add(array[i]);
+         }
+     }
+    l.add(array[array.length-1]);
+     String[] result = new String[l.size()];
+     result = l.toArray(result);
+     return result;
+
     }
 
     /**
